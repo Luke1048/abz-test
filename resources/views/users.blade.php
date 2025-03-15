@@ -14,32 +14,35 @@
         <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
     </div>
     @if(count($users))
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Photo</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Position ID</th>
-                    <th scope="col">Registration Timestamp</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>{{ $user->id }}</td>
-                        <td><img src="{{ asset('storage/' . $user->photo) }}" alt="User photo"></td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->phone }}</td>
-                        <td>{{ $user->position_id }}</td>
-                        <td>{{ $user->registration_timestamp }}</td>
+                        <th scope="col">#</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Registration Timestamp</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td><img src="{{ asset('storage/' . $user->photo) }}" alt="User photo"></td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->phone }}</td>
+                            {{-- <td>{{ $user->position_id }}</td> --}}
+                            <td>{{ $user->position['name'] }}</td>
+                            <td>{{ $user->registration_timestamp }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
         <nav aria-label="Users navigation" class="d-flex justify-content-center">
             <ul class="pagination">
